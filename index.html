@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skate RVA | Roller Skating, Birthday Parties & Events</title>
+    <style>
+      :root {
+        --bg-black-magic: #1b1b1b;
+        --card-bg: #262626;
+        --text-main: #f0f0f0;
+        --text-muted: #aaaaaa;
+        --neon-pink: #d6336c;
+        --neon-cyan: #3ff0ff;
+        --border-color: #333333;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--bg-black-magic);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Navigation */
+      header {
+        position: sticky;
+        top: 0;
+        background-color: rgba(27, 27, 27, 0.95);
+        backdrop-filter: blur(8px);
+        border-bottom: 2px solid var(--neon-pink);
+        z-index: 100;
+      }
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        height: 64px;
+        width: auto;
+        display: block;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem 0.75rem;
+        align-items: center;
+      }
+      nav a {
+        color: var(--text-main);
+        text-decoration: none;
+        margin-left: 0;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+      }
+      nav a:hover {
+        color: var(--neon-cyan);
+      }
+      nav a.nav-cta {
+        background-color: var(--neon-pink);
+        border-radius: 4px;
+        color: #fff;
+        padding: 0.6rem 0.9rem;
+        margin-left: 0;
+        display: inline-block;
+        line-height: 1.2;
+      }
+      nav a.nav-cta:hover {
+        background-color: #d6006b;
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        nav {
+          justify-content: center;
+          gap: 0.5rem 0.65rem;
+        }
+        nav a {
+          font-size: 0.85rem;
+        }
+        nav a.nav-cta {
+          padding: 0.65rem 0.95rem;
+        }
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem 3rem;
+        background: radial-gradient(
+          circle at center,
+          #2c2c2c 0%,
+          var(--bg-black-magic) 70%
+        );
+        border-bottom: 1px solid var(--border-color);
+      }
+      .hero h1 {
+        margin-bottom: 0.5rem;
+      }
+      .hero-logo {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+      }
+      .hero p {
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+      }
+      .badge-bar {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .badge {
+        background: var(--card-bg);
+        border: 1px solid var(--neon-cyan);
+        color: var(--neon-cyan);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        height: 3px;
+        background: var(--neon-cyan);
+        width: 100%;
+        margin-top: 4px;
+      }
+
+      /* Grid Layouts */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card-header {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .card-header h3 {
+        color: var(--neon-pink);
+        font-size: 1.3rem;
+      }
+      .price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--neon-cyan);
+        margin: 0.5rem 0;
+      }
+      .deposit-tag {
+        font-size: 0.85rem;
+        color: var(--neon-cyan);
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      ul.feature-list {
+        list-style: none;
+        margin: 1rem 0;
+      }
+      ul.feature-list li {
+        padding: 0.3rem 0;
+        border-bottom: 1px stroke var(--border-color);
+        color: var(--text-muted);
+      }
+      ul.feature-list li::before {
+        content: "✓ ";
+        color: var(--neon-cyan);
+      }
+      ul.feature-list ul {
+        list-style: disc;
+        margin: 0.25rem 0 0.25rem 1.25rem;
+        padding-left: 1rem;
+      }
+      ul.feature-list ul li {
+        border-bottom: 0;
+        padding: 0.15rem 0;
+      }
+      ul.feature-list ul li::before {
+        content: none;
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 0.85rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      tr.day-end td {
+        border-bottom: 3px solid var(--neon-cyan);
+      }
+      td.day-label {
+        border-bottom: 3px solid var(--neon-cyan);
+      }
+      th {
+        background-color: #333;
+        color: var(--neon-cyan);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-block;
+        background-color: var(--neon-pink);
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        transition: background 0.2s;
+      }
+      .btn:hover {
+        background-color: #d6006b;
+      }
+      .section-action {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1rem;
+      }
+      .section-action .btn {
+        min-width: 140px;
+      }
+      @media (max-width: 600px) {
+        .section-action .btn {
+          width: 100%;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background-color: #121212;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        padding: 2rem 1rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <img src="assets/skate-rva-logo.svg" alt="Skate RVA" />
+        </div>
+        <nav>
+          <a href="#schedule">Schedule</a>
+          <a href="#parties">Parties</a>
+          <a href="#private">Private Rentals</a>
+          <a href="#classes">Classes</a>
+          <a href="#contact">Contact</a>
+          <a
+            class="nav-cta"
+            href="https://forms.gle/XhmiqauXtZekBZHA9"
+            target="_blank"
+            rel="noopener"
+            >Book a Party!</a
+          >
+          <a
+            class="nav-cta"
+            href="https://forms.gle/VzsfRVDkr8UJzkeJA"
+            target="_blank"
+            rel="noopener"
+            >Join Our Team</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>
+        <img
+          class="hero-logo"
+          src="assets/skate-rva-logo.svg"
+          alt="Skate RVA"
+        />
+      </h1>
+      <p>
+        RVA's home for classic roller skating, birthday celebrations, and family
+        fun.
+      </p>
+      <div class="badge-bar">
+        <span class="badge">Skate Rental: $5</span>
+        <span class="badge">Skate Mates: $5</span>
+        <span class="badge">Speed Club Wed/Fri/Sun</span>
+      </div>
+    </section>
+
+    <div class="container">
+      <section id="schedule" style="margin-bottom: 4rem">
+        <h2 class="section-title">Public Skate Schedule & Admission</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Session Details</th>
+              <th>Admission</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="day-end">
+              <td class="day-label"><strong>Sunday</strong></td>
+              <td>Public Skate (2:00pm – 4:30pm)</td>
+              <td>$9</td>
+            </tr>
+            <tr class="day-end">
+              <td><strong>Monday</strong></td>
+              <td colspan="2" style="color: var(--text-muted)">
+                Closed for Renovations
+              </td>
+            </tr>
+            <tr class="day-end">
+              <td><strong>Tuesday</strong></td>
+              <td colspan="2" style="color: var(--text-muted)">
+                Closed for Renovations
+              </td>
+            </tr>
+            <tr class="day-end">
+              <td><strong>Wednesday</strong></td>
+              <td colspan="2" style="color: var(--text-muted)">
+                Closed for Renovations
+              </td>
+            </tr>
+            <tr class="day-end">
+              <td><strong>Thursday</strong></td>
+              <td colspan="2" style="color: var(--text-muted)">
+                Closed for Renovations
+              </td>
+            </tr>
+            <tr class="day-end">
+              <td><strong>Friday</strong></td>
+              <td>Public Skate (8:00pm – 10:30pm)</td>
+              <td>$10</td>
+            </tr>
+            <tr>
+              <td rowspan="3" class="day-label"><strong>Saturday</strong></td>
+              <td>Public Skate (10:30am – 12:30pm)</td>
+              <td>$8</td>
+            </tr>
+            <tr>
+              <td>Public Skate (2:00pm – 4:30pm)</td>
+              <td>$9</td>
+            </tr>
+            <tr class="day-end">
+              <td>Public Skate (8:00pm – 10:30pm)</td>
+              <td>$10</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="parties" style="margin-bottom: 4rem">
+        <h2 class="section-title">Party Packages</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div>
+              <div class="card-header">
+                <h3>Public Party</h3>
+              </div>
+              <div class="price">$200</div>
+              <div class="deposit-tag">
+                50% Non-Refundable Deposit Required to Reserve
+              </div>
+              <ul class="feature-list">
+                <li>Includes up to 10 guests</li>
+                <li>Reserved table for the session</li>
+                <li>
+                  Admission, skate rental, and drink per child guest and a
+                  bucket of popcorn for the party guests.
+                </li>
+                <li>Birthday song & announcement</li>
+                <li>Each additional guest beyond 10: $13</li>
+              </ul>
+            </div>
+            <a
+              href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Public%20Party"
+              class="btn"
+              >Text to Book</a
+            >
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="card-header">
+                <h3>Private Party</h3>
+              </div>
+              <div class="price">$275</div>
+              <div class="deposit-tag">
+                50% Non-Refundable Deposit Required to Reserve
+              </div>
+              <ul class="feature-list">
+                <li>Includes up to 10 guests</li>
+                <li>Exclusive use of the rink</li>
+                <li>
+                  Includes admission, skate rental, a whole pizza, a bucket of
+                  popcorn, plus a pitcher of soda.
+                </li>
+                <li>Parents & Grandparents admitted free</li>
+                <li>
+                  Available Time Slots:
+                  <ul>
+                    <li>Sundays 11:00am–1:00pm and 5:30pm–7:30pm</li>
+                    <li>Wednesdays 5:00pm–8:00pm</li>
+                    <li>Fridays 5:00pm–7:30pm</li>
+                    <li>Saturdays 5:30pm–7:30pm</li>
+                  </ul>
+                </li>
+                <li>
+                  Private parties are 1.5 hours; additional 30 minutes is $75
+                </li>
+                <li>Each additional guest beyond 10: $17</li>
+              </ul>
+            </div>
+            <a
+              href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Private%20Party"
+              class="btn"
+              >Text to Book</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="private" style="margin-bottom: 4rem">
+        <h2 class="section-title">Private Building Rental</h2>
+        <p style="margin-bottom: 1rem; color: var(--text-muted)">
+          Reserve the entire building for 2 hours! Ideal for birthday parties,
+          family reunions, end-of-season sports banquets, churches, corporate
+          outings, and other private groups. A 50% non-refundable deposit is
+          required at time of reservation. Price covers admission but does not
+          include skate rental or food.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Guest Count</th>
+              <th>Rental Rate</th>
+              <th>Required Deposit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up to 25 Guests</td>
+              <td>$400</td>
+              <td>$200</td>
+            </tr>
+            <tr>
+              <td>Up to 50 Guests</td>
+              <td>$475</td>
+              <td>$237.50</td>
+            </tr>
+            <tr>
+              <td>Up to 75 Guests</td>
+              <td>$550</td>
+              <td>$275</td>
+            </tr>
+            <tr>
+              <td>Up to 100 Guests</td>
+              <td>$625</td>
+              <td>$312.50</td>
+            </tr>
+            <tr>
+              <td>Up to 150 Guests</td>
+              <td>$775</td>
+              <td>$387.50</td>
+            </tr>
+            <tr>
+              <td>Up to 200 Guests</td>
+              <td>$925</td>
+              <td>$462.50</td>
+            </tr>
+            <tr>
+              <td>Up to 300 Guests</td>
+              <td>$1,225</td>
+              <td>$612.50</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="section-action">
+          <a
+            href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Building%20Rental"
+            class="btn"
+            >Text to Book</a
+          >
+        </div>
+      </section>
+
+      <section id="fundraiser" style="margin-bottom: 4rem">
+        <h2 class="section-title">Private Fundraiser</h2>
+        <p style="margin-bottom: 1rem; color: var(--text-muted)">
+          Ideal for school PTAs, Boy Scout and Girl Scout troops, American
+          Heritage Girls, youth sports leagues, and local non-profits. Funds
+          raised are 80% of admission revenue above the $375 building rental
+          fee. The table below shows an example of money you could raise based
+          on guest count and admission price. You get to decide the admission
+          price. Skate rental is not included in price.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Guest Count</th>
+              <th>Admission Price</th>
+              <th>Building Rental Fee</th>
+              <th>Funds Raised</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>50 guests</td>
+              <td>$10</td>
+              <td>$375</td>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <td>75 guests</td>
+              <td>$10</td>
+              <td>$375</td>
+              <td>$300</td>
+            </tr>
+            <tr>
+              <td>100 guests</td>
+              <td>$10</td>
+              <td>$375</td>
+              <td>$500</td>
+            </tr>
+            <tr>
+              <td>150 guests</td>
+              <td>$10</td>
+              <td>$375</td>
+              <td>$900</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="section-action">
+          <a
+            href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Fundraiser"
+            class="btn"
+            >Text to Book</a
+          >
+        </div>
+      </section>
+
+      <section id="classes" style="margin-bottom: 4rem">
+        <h2 class="section-title">Skating Classes</h2>
+        <div class="card">
+          <div class="card-header">
+            <h3>Saturday Morning Lessons</h3>
+            <p
+              style="
+                color: var(--neon-cyan);
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-top: 0.5rem;
+              "
+            >
+              $15 per week (Cash or Check Only)
+            </p>
+          </div>
+          <p style="margin-bottom: 1rem">
+            Includes lesson, regular skate rental, and admission to the
+            10:30am–12:30pm Saturday public session.
+          </p>
+          <div class="grid-3">
+            <div>
+              <strong style="color: var(--neon-cyan)"
+                >Advanced / Gold (9:00am)</strong
+              >
+              <p style="font-size: 0.9rem; color: var(--text-muted)">
+                Spins, jumps, spread eagles, and figure achievements.
+              </p>
+            </div>
+            <div>
+              <strong style="color: var(--neon-cyan)"
+                >Intermediate / Silver (9:30am)</strong
+              >
+              <p style="font-size: 0.9rem; color: var(--text-muted)">
+                Crossovers, backward skating balance, and edge work.
+              </p>
+            </div>
+            <div>
+              <strong style="color: var(--neon-cyan)"
+                >Beginner / Bronze (10:00am)</strong
+              >
+              <p style="font-size: 0.9rem; color: var(--text-muted)">
+                Basic forward movement, posture, stopping, and safety.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 class="section-title">Location & Contact</h2>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Contact Numbers</h3>
+            </div>
+            <p>
+              <strong>Rink Phone:</strong>
+              <a href="tel:8047986550" style="color: var(--neon-cyan)"
+                >804-798-6550</a
+              >
+            </p>
+            <p style="display: flex; gap: 0.75rem; margin-top: 1rem">
+              <a href="tel:8047986550" class="btn">Call</a>
+              <a href="sms:8047986550?&body=Hi%21" class="btn">Text</a>
+            </p>
+            <p style="margin-top: 1rem">
+              <strong>Email:</strong>
+              <a
+                href="mailto:AshlandSkateland@gmail.com"
+                style="color: var(--neon-cyan)"
+                >AshlandSkateland@gmail.com</a
+              >
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Address</h3>
+            </div>
+            <p>
+              <strong>Rink Location:</strong><br /><a
+                href="https://www.google.com/maps/dir/?api=1&destination=516+N.+Washington+Hwy,+Ashland,+VA+23005"
+                target="_blank"
+                rel="noopener"
+                style="color: var(--neon-cyan)"
+                >516 N. Washington Hwy, Ashland, VA 23005</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Skate RVA. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
