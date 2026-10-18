@@ -257,6 +257,16 @@
         font-weight: bold;
       }
 
+      .map-embed {
+        margin-top: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
+      .map-embed iframe {
+        display: block;
+      }
+
       ul.feature-list {
         list-style: none;
         margin: 1rem 0;
@@ -281,6 +291,47 @@
       }
       ul.feature-list ul li::before {
         content: none;
+      }
+
+      /* Medal badges */
+      .medal-item {
+        text-align: center;
+      }
+      .medal-badge {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.75rem;
+        font-weight: 900;
+        font-size: 1.4rem;
+        color: #1b1b1b;
+      }
+      .medal-badge.bronze {
+        background: linear-gradient(135deg, #e3a66f, #a9672f);
+      }
+      .medal-badge.silver {
+        background: linear-gradient(135deg, #f0f0f0, #a8a8a8);
+      }
+      .medal-badge.gold {
+        background: linear-gradient(135deg, #ffe08a, #d4af37);
+      }
+      .medal-item h4 {
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+      }
+      .medal-time {
+        color: var(--neon-cyan);
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      .medal-desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
       }
 
       /* Tables */
@@ -382,6 +433,7 @@
           <a href="#parties">Parties</a>
           <a href="#private">Private Rentals</a>
           <a href="#classes">Classes</a>
+          <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
           <a
             class="nav-cta"
@@ -416,7 +468,6 @@
       <div class="badge-bar">
         <span class="badge">Skate Rental: $5</span>
         <span class="badge">Skate Mates: $5</span>
-        <span class="badge">Speed Club Wed/Fri/Sun</span>
       </div>
     </section>
 
@@ -685,7 +736,7 @@
       </section>
 
       <section id="classes" style="margin-bottom: 4rem">
-        <h2 class="section-title">Skating Classes</h2>
+        <h2 class="section-title">Earn Your Medal</h2>
         <div class="card">
           <div class="card-header">
             <h3>Saturday Morning Lessons</h3>
@@ -700,35 +751,70 @@
               $15 per week (Cash or Check Only)
             </p>
           </div>
-          <p style="margin-bottom: 1rem">
-            Includes lesson, regular skate rental, and admission to the
-            10:30am–12:30pm Saturday public session.
+          <p style="margin-bottom: 1.5rem">
+            Includes the lesson and a regular skate rental.
           </p>
           <div class="grid-3">
-            <div>
-              <strong style="color: var(--neon-cyan)"
-                >Advanced / Gold (9:00am)</strong
-              >
-              <p style="font-size: 0.9rem; color: var(--text-muted)">
-                Spins, jumps, spread eagles, and figure achievements.
-              </p>
-            </div>
-            <div>
-              <strong style="color: var(--neon-cyan)"
-                >Intermediate / Silver (9:30am)</strong
-              >
-              <p style="font-size: 0.9rem; color: var(--text-muted)">
-                Crossovers, backward skating balance, and edge work.
-              </p>
-            </div>
-            <div>
-              <strong style="color: var(--neon-cyan)"
-                >Beginner / Bronze (10:00am)</strong
-              >
-              <p style="font-size: 0.9rem; color: var(--text-muted)">
+            <div class="medal-item">
+              <div class="medal-badge bronze">B</div>
+              <h4>Bronze &middot; Beginner</h4>
+              <div class="medal-time">10:00 AM</div>
+              <p class="medal-desc">
                 Basic forward movement, posture, stopping, and safety.
               </p>
             </div>
+            <div class="medal-item">
+              <div class="medal-badge silver">S</div>
+              <h4>Silver &middot; Intermediate</h4>
+              <div class="medal-time">9:30 AM</div>
+              <p class="medal-desc">
+                Crossovers, backward skating balance, and edge work.
+              </p>
+            </div>
+            <div class="medal-item">
+              <div class="medal-badge gold">G</div>
+              <h4>Gold &middot; Advanced</h4>
+              <div class="medal-time">9:00 AM</div>
+              <p class="medal-desc">
+                Spins, jumps, spread eagles, and figure achievements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" style="margin-bottom: 4rem">
+        <h2 class="section-title">What Skaters Are Saying</h2>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Google Reviews</h3>
+            </div>
+            <div class="stat-value" style="font-size: 2.5rem">4.4 ★</div>
+            <p style="color: var(--text-muted)">707 reviews</p>
+            <a
+              href="https://www.google.com/search?gs_ssp=eJzj4tZP1zcsyYnPzck2NGC0UjWosLBMMjS2NE9JNjdPNjVINrUyqEg1NE41TDU2S0oxNTFNMjDyEkwszshJzEtRKM5OLEkFsQDcHRV4&q=ashland+skateland&oq=ashland+skateland&sourceid=chrome&ie=UTF-8"
+              target="_blank"
+              rel="noopener"
+              class="btn"
+              style="margin-top: 1rem"
+              >See Reviews on Google</a
+            >
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Facebook Reviews</h3>
+            </div>
+            <div class="stat-value" style="font-size: 2.5rem">4.5 ★</div>
+            <p style="color: var(--text-muted)">80 reviews</p>
+            <a
+              href="https://www.facebook.com/ashland.skateland/"
+              target="_blank"
+              rel="noopener"
+              class="btn"
+              style="margin-top: 1rem"
+              >See Reviews on Facebook</a
+            >
           </div>
         </div>
       </section>
@@ -753,9 +839,9 @@
             <p style="margin-top: 1rem">
               <strong>Email:</strong>
               <a
-                href="mailto:AshlandSkateland@gmail.com"
+                href="mailto:Info@SkateRVA.app"
                 style="color: var(--neon-cyan)"
-                >AshlandSkateland@gmail.com</a
+                >Info@SkateRVA.app</a
               >
             </p>
           </div>
@@ -772,6 +858,18 @@
                 >516 N. Washington Hwy, Ashland, VA 23005</a
               >
             </p>
+            <div class="map-embed">
+              <iframe
+                src="https://www.google.com/maps?q=516+N.+Washington+Hwy,+Ashland,+VA+23005&output=embed"
+                width="100%"
+                height="250"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Map to Skate RVA"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
