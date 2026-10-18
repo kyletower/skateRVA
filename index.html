@@ -179,6 +179,53 @@
         gap: 1.5rem;
       }
 
+      /* Stat grids — shared by Today's Session, Building Rental & Fundraiser sliders */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        text-align: center;
+      }
+      @media (max-width: 600px) {
+        .stat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 0.4rem;
+      }
+      .stat-value {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: var(--neon-cyan);
+      }
+      .today-timer {
+        color: var(--neon-pink);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Sliders */
+      .slider-row {
+        margin-bottom: 1.5rem;
+      }
+      .slider-row label {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .slider-row label span {
+        color: var(--neon-cyan);
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--neon-pink);
+      }
+
       .card {
         background-color: var(--card-bg);
         border-radius: 8px;
@@ -262,6 +309,25 @@
         color: var(--neon-cyan);
         text-transform: uppercase;
         font-size: 0.85rem;
+      }
+      tr.current-day > td {
+        background-color: rgba(63, 240, 255, 0.1);
+      }
+      tr.current-day td.day-label {
+        color: var(--neon-cyan);
+      }
+      tr.current-day td.day-label::after {
+        content: "Today";
+        display: inline-block;
+        margin-left: 0.5rem;
+        padding: 0.1rem 0.5rem;
+        border-radius: 10px;
+        background: var(--neon-pink);
+        color: #fff;
+        font-size: 0.65rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        vertical-align: middle;
       }
 
       /* Buttons */
@@ -355,6 +421,32 @@
     </section>
 
     <div class="container">
+      <section id="today" style="margin-bottom: 4rem">
+        <h2 class="section-title">Today's Session</h2>
+        <div class="card">
+          <div class="stat-grid">
+            <div>
+              <div class="stat-label">Next Skate</div>
+              <div class="stat-value" id="today-next">—</div>
+            </div>
+            <div>
+              <div class="stat-label">Doors Open</div>
+              <div class="stat-value" id="today-doors">—</div>
+            </div>
+            <div>
+              <div class="stat-label">Admission</div>
+              <div class="stat-value" id="today-admission">—</div>
+            </div>
+            <div>
+              <div class="stat-label" id="today-countdown-label">Loading…</div>
+              <div class="stat-value today-timer" id="today-timer">
+                --:--:--
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="schedule" style="margin-bottom: 4rem">
         <h2 class="section-title">Public Skate Schedule & Admission</h2>
         <table>
@@ -366,50 +458,45 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="day-end">
+            <tr class="day-end" data-day="0">
               <td class="day-label"><strong>Sunday</strong></td>
               <td>Public Skate (2:00pm – 4:30pm)</td>
               <td>$9</td>
             </tr>
-            <tr class="day-end">
-              <td><strong>Monday</strong></td>
-              <td colspan="2" style="color: var(--text-muted)">
-                Closed for Renovations
-              </td>
+            <tr class="day-end" data-day="1">
+              <td class="day-label"><strong>Monday</strong></td>
+              <td>Adult Skate, 18+ Only (7:30pm – 10:00pm)</td>
+              <td>$9</td>
             </tr>
-            <tr class="day-end">
-              <td><strong>Tuesday</strong></td>
-              <td colspan="2" style="color: var(--text-muted)">
-                Closed for Renovations
-              </td>
+            <tr class="day-end" data-day="2">
+              <td class="day-label"><strong>Tuesday</strong></td>
+              <td>Public Skate (7:00pm – 9:00pm)</td>
+              <td>$7</td>
             </tr>
-            <tr class="day-end">
-              <td><strong>Wednesday</strong></td>
-              <td colspan="2" style="color: var(--text-muted)">
-                Closed for Renovations
-              </td>
+            <tr data-day="4">
+              <td rowspan="2" class="day-label"><strong>Thursday</strong></td>
+              <td>Public Skate (10:00am – 12:00pm)</td>
+              <td>$7</td>
             </tr>
-            <tr class="day-end">
-              <td><strong>Thursday</strong></td>
-              <td colspan="2" style="color: var(--text-muted)">
-                Closed for Renovations
-              </td>
+            <tr class="day-end" data-day="4">
+              <td>Christian Music Skate (7:00pm – 9:00pm)</td>
+              <td>$7</td>
             </tr>
-            <tr class="day-end">
-              <td><strong>Friday</strong></td>
+            <tr class="day-end" data-day="5">
+              <td class="day-label"><strong>Friday</strong></td>
               <td>Public Skate (8:00pm – 10:30pm)</td>
               <td>$10</td>
             </tr>
-            <tr>
+            <tr data-day="6">
               <td rowspan="3" class="day-label"><strong>Saturday</strong></td>
               <td>Public Skate (10:30am – 12:30pm)</td>
               <td>$8</td>
             </tr>
-            <tr>
+            <tr data-day="6">
               <td>Public Skate (2:00pm – 4:30pm)</td>
               <td>$9</td>
             </tr>
-            <tr class="day-end">
+            <tr class="day-end" data-day="6">
               <td>Public Skate (8:00pm – 10:30pm)</td>
               <td>$10</td>
             </tr>
@@ -497,52 +584,31 @@
           required at time of reservation. Price covers admission but does not
           include skate rental or food.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Guest Count</th>
-              <th>Rental Rate</th>
-              <th>Required Deposit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Up to 25 Guests</td>
-              <td>$400</td>
-              <td>$200</td>
-            </tr>
-            <tr>
-              <td>Up to 50 Guests</td>
-              <td>$475</td>
-              <td>$237.50</td>
-            </tr>
-            <tr>
-              <td>Up to 75 Guests</td>
-              <td>$550</td>
-              <td>$275</td>
-            </tr>
-            <tr>
-              <td>Up to 100 Guests</td>
-              <td>$625</td>
-              <td>$312.50</td>
-            </tr>
-            <tr>
-              <td>Up to 150 Guests</td>
-              <td>$775</td>
-              <td>$387.50</td>
-            </tr>
-            <tr>
-              <td>Up to 200 Guests</td>
-              <td>$925</td>
-              <td>$462.50</td>
-            </tr>
-            <tr>
-              <td>Up to 300 Guests</td>
-              <td>$1,225</td>
-              <td>$612.50</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card">
+          <div class="slider-row">
+            <label for="rental-guests"
+              >Guest Count <span id="rental-guests-value">Up to 25</span></label
+            >
+            <input
+              type="range"
+              id="rental-guests"
+              min="0"
+              max="10"
+              step="1"
+              value="0"
+            />
+          </div>
+          <div class="stat-grid" style="grid-template-columns: repeat(2, 1fr)">
+            <div>
+              <div class="stat-label">Rental Rate</div>
+              <div class="stat-value" id="rental-rate">$400</div>
+            </div>
+            <div>
+              <div class="stat-label">Required Deposit (50%)</div>
+              <div class="stat-value" id="rental-deposit">$200</div>
+            </div>
+          </div>
+        </div>
         <div class="section-action">
           <a
             href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Building%20Rental"
@@ -558,46 +624,57 @@
           Ideal for school PTAs, Boy Scout and Girl Scout troops, American
           Heritage Girls, youth sports leagues, and local non-profits. Funds
           raised are 80% of admission revenue above the $375 building rental
-          fee. The table below shows an example of money you could raise based
-          on guest count and admission price. You get to decide the admission
-          price. Skate rental is not included in price.
+          fee. Drag the sliders below to estimate what your group could raise.
+          You get to decide the admission price. Skate rental is not included
+          in price.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Guest Count</th>
-              <th>Admission Price</th>
-              <th>Building Rental Fee</th>
-              <th>Funds Raised</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>50 guests</td>
-              <td>$10</td>
-              <td>$375</td>
-              <td>$100</td>
-            </tr>
-            <tr>
-              <td>75 guests</td>
-              <td>$10</td>
-              <td>$375</td>
-              <td>$300</td>
-            </tr>
-            <tr>
-              <td>100 guests</td>
-              <td>$10</td>
-              <td>$375</td>
-              <td>$500</td>
-            </tr>
-            <tr>
-              <td>150 guests</td>
-              <td>$10</td>
-              <td>$375</td>
-              <td>$900</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card">
+          <div class="slider-row">
+            <label for="fund-guests"
+              >Guests <span id="fund-guests-value">100</span></label
+            >
+            <input
+              type="range"
+              id="fund-guests"
+              min="25"
+              max="300"
+              step="5"
+              value="100"
+            />
+          </div>
+          <div class="slider-row">
+            <label for="fund-price"
+              >Admission You Charge
+              <span id="fund-price-value">$10</span></label
+            >
+            <input
+              type="range"
+              id="fund-price"
+              min="5"
+              max="15"
+              step="1"
+              value="10"
+            />
+          </div>
+          <div class="stat-grid" style="grid-template-columns: 1fr">
+            <div>
+              <div class="stat-label">Your Group Raises (Estimate)</div>
+              <div class="stat-value" id="fund-raised" style="font-size: 2rem">
+                $500
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              font-size: 0.85rem;
+              color: var(--text-muted);
+              margin-top: 1rem;
+              text-align: center;
+            "
+          >
+            Estimate: 80% × (guests × admission − $375 building rental fee)
+          </p>
+        </div>
         <div class="section-action">
           <a
             href="sms:8047986550?&body=Hi%21%20I%27d%20like%20to%20book%20a%20Fundraiser"
@@ -703,5 +780,177 @@
     <footer>
       <p>&copy; 2026 Skate RVA. All Rights Reserved.</p>
     </footer>
+
+    <script>
+      // Mirrors the Public Skate Schedule table above — update both if hours change.
+      var SCHEDULE = [
+        [{ start: "14:00", end: "16:30", price: 9 }], // Sunday — Public Skate
+        [{ start: "19:30", end: "22:00", price: 9 }], // Monday — Adult Skate (18+)
+        [{ start: "19:00", end: "21:00", price: 7 }], // Tuesday — Public Skate
+        [], // Wednesday — no public sessions
+        [
+          { start: "10:00", end: "12:00", price: 7 },
+          { start: "19:00", end: "21:00", price: 7 },
+        ], // Thursday — Public Skate, Christian Music Skate
+        [{ start: "20:00", end: "22:30", price: 10 }], // Friday — Public Skate
+        [
+          { start: "10:30", end: "12:30", price: 8 },
+          { start: "14:00", end: "16:30", price: 9 },
+          { start: "20:00", end: "22:30", price: 10 },
+        ], // Saturday
+      ];
+
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function parseTime(str) {
+        return str.split(":").map(Number);
+      }
+
+      function atTime(date, hhmm) {
+        var parts = parseTime(hhmm);
+        var d = new Date(date);
+        d.setHours(parts[0], parts[1], 0, 0);
+        return d;
+      }
+
+      function formatTime12(date) {
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var ampm = h >= 12 ? "PM" : "AM";
+        h = h % 12;
+        if (h === 0) h = 12;
+        return h + ":" + pad(m) + " " + ampm;
+      }
+
+      function formatCountdown(ms) {
+        if (ms <= 0) return "00:00:00";
+        var totalSeconds = Math.floor(ms / 1000);
+        var days = Math.floor(totalSeconds / 86400);
+        var hours = Math.floor((totalSeconds % 86400) / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+        var hms = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+        return days > 0 ? days + "d " + hms : hms;
+      }
+
+      function findSession(now) {
+        var todaySessions = SCHEDULE[now.getDay()];
+        for (var i = 0; i < todaySessions.length; i++) {
+          var s = todaySessions[i];
+          var start = atTime(now, s.start);
+          var end = atTime(now, s.end);
+          if (now >= start && now < end) {
+            return { type: "open", session: s, start: start, end: end, dayOffset: 0 };
+          }
+        }
+        for (var offset = 0; offset <= 7; offset++) {
+          var d = new Date(now);
+          d.setDate(d.getDate() + offset);
+          var sessions = SCHEDULE[d.getDay()];
+          for (var j = 0; j < sessions.length; j++) {
+            var sess = sessions[j];
+            var sessStart = atTime(d, sess.start);
+            if (sessStart > now) {
+              return {
+                type: "upcoming",
+                session: sess,
+                start: sessStart,
+                end: atTime(d, sess.end),
+                dayOffset: offset,
+              };
+            }
+          }
+        }
+        return null;
+      }
+
+      function nextSkateLabel(result) {
+        if (result.type === "open") return "Now";
+        if (result.dayOffset === 0) return "Today";
+        if (result.dayOffset === 1) return "Tomorrow";
+        return result.start.toLocaleDateString("en-US", { weekday: "long" });
+      }
+
+      function updateTodaySession() {
+        var now = new Date();
+        var result = findSession(now);
+        if (!result) return;
+
+        document.getElementById("today-next").textContent = nextSkateLabel(result);
+        document.getElementById("today-doors").textContent = formatTime12(result.start);
+        document.getElementById("today-admission").textContent = "$" + result.session.price;
+
+        var countdownTarget = result.type === "open" ? result.end : result.start;
+        var countdownLabel = result.type === "open" ? "Floor Is Open — Ends In" : "Doors Open In";
+        document.getElementById("today-countdown-label").textContent = countdownLabel;
+        document.getElementById("today-timer").textContent = formatCountdown(countdownTarget - now);
+      }
+
+      function highlightCurrentDay() {
+        var today = new Date().getDay();
+        document.querySelectorAll("#schedule tbody tr").forEach(function (row) {
+          var isToday = Number(row.getAttribute("data-day")) === today;
+          row.classList.toggle("current-day", isToday);
+        });
+      }
+
+      updateTodaySession();
+      highlightCurrentDay();
+      setInterval(function () {
+        updateTodaySession();
+        highlightCurrentDay();
+      }, 1000);
+
+      // Mirrors the Private Building Rental table above — update both if rates change.
+      var RENTAL_TIERS = [
+        { guests: 25, rate: 400, deposit: 200 },
+        { guests: 50, rate: 475, deposit: 237.5 },
+        { guests: 75, rate: 550, deposit: 275 },
+        { guests: 100, rate: 625, deposit: 312.5 },
+        { guests: 150, rate: 775, deposit: 387.5 },
+        { guests: 200, rate: 925, deposit: 462.5 },
+        { guests: 300, rate: 1225, deposit: 612.5 },
+        { guests: 400, rate: 1525, deposit: 762.5 },
+        { guests: 500, rate: 1825, deposit: 912.5 },
+        { guests: 600, rate: 2125, deposit: 1062.5 },
+        { guests: 700, rate: 2425, deposit: 1212.5 },
+      ];
+
+      function formatMoney(n) {
+        return (
+          "$" +
+          n.toLocaleString("en-US", {
+            minimumFractionDigits: n % 1 === 0 ? 0 : 2,
+            maximumFractionDigits: 2,
+          })
+        );
+      }
+
+      function updateRentalSlider() {
+        var tier = RENTAL_TIERS[Number(document.getElementById("rental-guests").value)];
+        document.getElementById("rental-guests-value").textContent = "Up to " + tier.guests;
+        document.getElementById("rental-rate").textContent = formatMoney(tier.rate);
+        document.getElementById("rental-deposit").textContent = formatMoney(tier.deposit);
+      }
+
+      document.getElementById("rental-guests").addEventListener("input", updateRentalSlider);
+      updateRentalSlider();
+
+      // Formula mirrors the Private Fundraiser pricing described above: 80% of admission revenue above the $375 building rental fee.
+      function updateFundraiserSliders() {
+        var guests = Number(document.getElementById("fund-guests").value);
+        var price = Number(document.getElementById("fund-price").value);
+        document.getElementById("fund-guests-value").textContent = guests;
+        document.getElementById("fund-price-value").textContent = "$" + price;
+        var raised = Math.max(0, Math.round(0.8 * (guests * price - 375)));
+        document.getElementById("fund-raised").textContent = "$" + raised.toLocaleString("en-US");
+      }
+
+      document.getElementById("fund-guests").addEventListener("input", updateFundraiserSliders);
+      document.getElementById("fund-price").addEventListener("input", updateFundraiserSliders);
+      updateFundraiserSliders();
+    </script>
   </body>
 </html>
