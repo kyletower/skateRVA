@@ -13,6 +13,7 @@
         --neon-pink: #d6336c;
         --neon-cyan: #3ff0ff;
         --border-color: #333333;
+        --header-height: 100px;
       }
 
       * {
@@ -37,6 +38,9 @@
         backdrop-filter: blur(8px);
         border-bottom: 2px solid var(--neon-pink);
         z-index: 100;
+      }
+      section[id] {
+        scroll-margin-top: var(--header-height);
       }
       .nav-container {
         max-width: 1100px;
@@ -430,6 +434,8 @@
         </div>
         <nav>
           <a href="#schedule">Schedule</a>
+          <a href="/calendar/">Calendar</a>
+          <a href="/menu/">Menu</a>
           <a href="#parties">Parties</a>
           <a href="#private">Private Rentals</a>
           <a href="#classes">Classes</a>
@@ -576,6 +582,12 @@
                 </li>
                 <li>Birthday song & announcement</li>
                 <li>Each additional guest beyond 10: $13</li>
+                <li>
+                  Available during any
+                  <a href="#schedule" style="color: var(--neon-cyan)"
+                    >Public Skate time slot</a
+                  >
+                </li>
               </ul>
             </div>
             <a
@@ -1049,6 +1061,19 @@
       document.getElementById("fund-guests").addEventListener("input", updateFundraiserSliders);
       document.getElementById("fund-price").addEventListener("input", updateFundraiserSliders);
       updateFundraiserSliders();
+
+      // Keeps anchor-link scrolling from landing a heading underneath the sticky header,
+      // whose height varies (e.g. nav wraps to multiple lines on narrow screens).
+      function syncHeaderHeight() {
+        var header = document.querySelector("header");
+        if (!header) return;
+        document.documentElement.style.setProperty(
+          "--header-height",
+          header.offsetHeight + 16 + "px"
+        );
+      }
+      syncHeaderHeight();
+      window.addEventListener("resize", syncHeaderHeight);
     </script>
   </body>
 </html>
